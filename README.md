@@ -185,4 +185,30 @@ Accuracy : 74.73%
 Macro F1 : 70.88%
 Saved    : /Users/nagashayanaramamurthy/GitHub/radiocd-pointcloud/outputs/pointnet_ablation/results_5ch.csv
 
+ -> physical PluggableDevice (device: 0, name: METAL, pci bus id: <undefined>)
+Features: i Shape: (76821, 32, 1) Parameters: 152005
+2026-09-29 16:55:20.364550: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:117] Plugin optimizer for device_type GPU is enabled.
+
+
+Only intensity
+
+Accuracy=0.6008 MacroF1=0.5744 Epochs=77 BestEpoch=47
+Training=29.3 min, 22.87 s/epoch; inference=0.0772 ms/sample
+
+without doppler
+
+python scripts/train_pointnet_ablation_features.py --features xyzi --fold 1
+X dtype: float32 y dtype: int64
+2026-09-29 18:48:23.437053: I metal_plugin/src/device/metal_device.cc:1154] Metal device set to: Apple M1 Pro
+2026-09-29 18:48:23.437305: I metal_plugin/src/device/metal_device.cc:296] systemMemory: 16.00 GB
+2026-09-29 18:48:23.437317: I metal_plugin/src/device/metal_device.cc:313] maxCacheSize: 5.92 GB
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1790722103.437494 2741450 pluggable_device_factory.cc:305] Could not identify NUMA node of platform GPU ID 0, defaulting to 0. Your kernel may not have been built with NUMA support.
+I0000 00:00:1790722103.437717 2741450 pluggable_device_factory.cc:271] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 0 MB memory) -> physical PluggableDevice (device: 0, name: METAL, pci bus id: <undefined>)
+Features: xyzi Shape: (76821, 32, 4) Parameters: 152197
+2026-09-29 18:48:24.409794: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:117] Plugin optimizer for device_type GPU is enabled.
+
+
+Accuracy=0.8724 MacroF1=0.8533 Epochs=89 BestEpoch=59
+Training=33.4 min, 22.55 s/epoch; inference=0.0775 ms/sample
 

@@ -19,7 +19,12 @@ def build(npnt,nd):
         x=layers.Dense(n,use_bias=False)(x); x=layers.BatchNormalization()(x)
         x=layers.Activation("relu")(x); x=layers.Dropout(.3)(x)
     o=layers.Dense(5,activation="softmax")(x)
-    m=keras.Model(i,o); m.compile(keras.optimizers.Adam(1e-3),"sparse_categorical_crossentropy",["accuracy"])
+    m=keras.Model(i,o);
+    m.compile(
+    optimizer=keras.optimizers.Adam(learning_rate=1e-3),
+    loss="sparse_categorical_crossentropy",
+    metrics=["accuracy"],
+)
     return m
 
 ap=argparse.ArgumentParser()
